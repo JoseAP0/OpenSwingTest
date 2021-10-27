@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/josau/Documents/NetBeansProjects/ProjetoTeste1/src/br/com/projeto/open/swing/model/ConnectionFactory.java</file>
+            <file>file:/C:/Users/josau/Documents/NetBeansProjects/ProjetoTeste1/src/br/com/projeto/open/swing/model/Usuario.java</file>
+            <file>file:/C:/Users/josau/Documents/NetBeansProjects/ProjetoTeste1/src/br/com/projeto/open/swing/view/Login.java</file>
+            <file>file:/C:/Users/josau/Documents/NetBeansProjects/ProjetoTeste1/src/br/com/projeto/open/swing/model/DAO.java</file>
+            <file>file:/C:/Users/josau/Documents/NetBeansProjects/ProjetoTeste1/src/br/com/projeto/open/swing/view/Principal.java</file>
+        </group>
     </open-files>
 </project-private>

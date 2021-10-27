@@ -1,5 +1,6 @@
 package br.com.projeto.open.swing.model;
 
+import br.com.projeto.open.swing.VO.FuncionarioVO;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class DAO {
  
-    public void save (User user){
+    public void save (FuncionarioVO usuario){
         //cria a query para inserir
         String query = "INSERT INTO tab_alunos (user_name, gender, phone, address, cpf) VALUES (?,?,?,?,?)";
         
@@ -21,11 +22,11 @@ public class DAO {
             //Cria a preparedStatement enviando a query
             pstm = con.prepareStatement(query);
             //Adiciona os valores �s posi��es do array da query
-            pstm.setString(1, user.getUserName());
-            pstm.setString(2, user.getGender());
-            pstm.setString(3, user.getPhone());
-            pstm.setString(4, user.getAddress());
-            pstm.setString(5, user.getCpf());
+            pstm.setString(1, usuario.getUserName());
+            pstm.setString(2, usuario.getGender());
+            pstm.setString(3, usuario.getPhone());
+            pstm.setString(4, usuario.getAddress());
+            pstm.setString(5, usuario.getCpf());
             //executa a query no banco
             
             pstm.execute();
@@ -49,11 +50,11 @@ public class DAO {
         }
     } 
     
-    public List<User> read (){
+    public List<usuario> read (){
         //cria a query para inser��o
         String query = "SELECT * FROM tab_alunos";
         //Cria a list para armazenar os dados
-        List <User> users = new ArrayList<>();
+        List <usuario> usuarios = new ArrayList<>();
         
         //cria a connection e o prepared statement
         Connection con = null;
@@ -71,7 +72,7 @@ public class DAO {
             
             while (rs.next()){
                 
-                User user = new User();
+                usuario user = new usuario();
                 
                 user.setUserName(rs.getString("user_name"));
                 user.setAddress(rs.getString("address"));
@@ -79,7 +80,7 @@ public class DAO {
                 user.setPhone(rs.getString("phone"));
                 user.setGender(rs.getString("gender"));
                 
-                users.add(user);
+                usuario.add(user);
             }
         }
         catch(Exception e){
@@ -101,10 +102,10 @@ public class DAO {
                 e.printStackTrace();
             }
         }
-        return users;
+        return usuario;
     }
     
-    public void update (User user){
+    public void update (usuario user){
         //cria a query
         String query = "UPDATE tab_alunos SET user_name= ?, gender= ?, phone= ?, address= ?" + "WHERE cpf=?";
         //cria a connection e o prepared statement
