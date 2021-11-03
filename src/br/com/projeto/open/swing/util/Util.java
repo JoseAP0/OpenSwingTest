@@ -1,24 +1,28 @@
 package br.com.projeto.open.swing.util;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 import org.openswing.swing.message.send.java.FilterWhereClause;
 import org.openswing.swing.util.java.Consts;
 
 public class Util {
-    
+
     private static Alerta objalert;
-    
-    public static Alerta getAlert(){
-        
-        if (objalert == null){
+    MaskFormatter mascara;
+
+    public static Alerta getAlert() {
+
+        if (objalert == null) {
             objalert = new Alerta();
         }
-        
+
         return objalert;
     }
-    
+
     public static Map ajustaFiltro(Map filteredColumns) {
 
         Iterator it = filteredColumns.keySet().iterator();
@@ -63,5 +67,22 @@ public class Util {
 
         return filteredColumns;
 
+    }
+
+    public MaskFormatter organizarMascara(String tipo) {
+
+        try {
+
+            if (tipo.equals("DATE")) {
+                this.mascara = new MaskFormatter("##/##/####");
+            }
+
+            this.mascara.setPlaceholderCharacter('_');
+            this.mascara.setValidCharacters("0123456789");
+        } catch (ParseException ex) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao Adicionar Mascara" + ex.getMessage());
+        }
+        return this.mascara;
     }
 }

@@ -29,7 +29,7 @@ public abstract class Conexao {
 
         try {
 
-            String url = "jdbc:postgresql://localhost:5432/teste";
+            String url = "jdbc:postgresql://localhost:5432/teste1";
             conexao = (Connection) DriverManager.getConnection(url, "postgres", "postgres");
         } catch (SQLException ex) {
 

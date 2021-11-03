@@ -1,7 +1,19 @@
 package br.com.projeto.open.swing.view;
 
-import br.com.model.open.swing.controllers.FuncionarioController;
+import br.com.projeto.open.swing.controllers.FuncionarioController;
+import br.com.projeto.open.swing.util.Dominios;
 import br.com.projeto.open.swing.util.Util;
+import java.awt.event.KeyEvent;
+import java.util.Hashtable;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.KeyStroke;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import org.openswing.swing.internationalization.java.XMLResourcesFactory;
+import org.openswing.swing.permissions.java.ButtonsAuthorizations;
+import org.openswing.swing.util.client.ClientSettings;
 
 /**
  *
@@ -13,7 +25,8 @@ public class Principal extends javax.swing.JFrame {
     public FuncionarioController funcionarioController;
 
     public Principal() {
-
+        
+        this.organizarOpenSwing();
         initComponents();
     }
 
@@ -81,8 +94,15 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        this.dispose();
-        this.login.setVisible(true);
+        if (login != null){
+            this.dispose();
+            login.setVisible(true);
+        }
+        else{
+                this.dispose();
+                login = new Login();
+                login.setVisible(true);
+            }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -119,4 +139,64 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
 
+    private void organizarOpenSwing() {
+
+        Hashtable domains = new Hashtable();
+        new Dominios(domains);
+
+        Hashtable xmlFiles = new Hashtable();
+        xmlFiles.put("PT_BR", "br/com/projeto/open/swing/arquivos/Resources_pt_br.xml");
+        ClientSettings clientSettings = new ClientSettings(
+                new XMLResourcesFactory(xmlFiles, false),
+                domains,
+                new ButtonsAuthorizations()
+        );
+
+        try {
+            Properties props = new Properties();
+
+            props.put("logoString", "Curso");
+            props.setProperty("brightMode", "on");
+            props.setProperty("menuOpaque", "on");
+            props.setProperty("backgroundPattern", "off");
+            props.setProperty("drawSquareButtons", "on");
+            props.setProperty("backgroundColor", "235 247 254");
+
+            props.setProperty("windowDecoration", "false");
+
+            com.jtattoo.plaf.mcwin.McWinLookAndFeel.setTheme(props);
+            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ClientSettings.AS_TAB = KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0);
+        ClientSettings.LOOK_AND_FEEL_CLASS_NAME = "com.jtattoo.plaf.mcwin.McWinLookAndFeel";
+
+        ClientSettings.VIEW_BACKGROUND_SEL_COLOR = true;
+        ClientSettings.BUTTON_INSERT_IMAGE_NAME = "inserir.png";
+        ClientSettings.BUTTON_RELOAD_IMAGE_NAME = "reload.png";
+        ClientSettings.BUTTON_SAVE_IMAGE_NAME = "salvar.png";
+        ClientSettings.BUTTON_FILTER_IMAGE_NAME = "pesquisa.png";
+        ClientSettings.BUTTON_DELETE_IMAGE_NAME = "excluir.png";
+        ClientSettings.BUTTON_COPY_IMAGE_NAME = "copiar.png";
+        ClientSettings.BUTTON_EDIT_IMAGE_NAME = "editar.png";
+        ClientSettings.BUTTON_EXPORT_IMAGE_NAME = "exportar.png";
+        ClientSettings.BUTTON_IMPORT_IMAGE_NAME = "importar.png";
+
+        ClientSettings.VIEW_MANDATORY_SYMBOL = true;
+        ClientSettings.ALLOW_OR_OPERATOR = false;
+        ClientSettings.LIKE = "ilike";
+
+        ClientSettings.TREE_BACK = null;
+        ClientSettings.FILTER_PANEL_ON_GRID = false;
+        ClientSettings.SHOW_FILTER_SYMBOL = true;
+        ClientSettings.ASK_BEFORE_CLOSE = true;
+        ClientSettings.RELOAD_LAST_VO_ON_FORM = true;
+        ClientSettings.MAX_EXPORTABLE_ROWS = 2000000000;
+        ClientSettings.SHOW_EVENT_QUEUE_EXCEPTIONS = true;
+        ClientSettings.SHOW_FOCUS_BORDER_ON_FORM = false;
+
+        ClientSettings.getInstance().setLanguage("PT_BR");
+    }
 }

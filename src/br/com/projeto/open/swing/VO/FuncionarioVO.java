@@ -1,15 +1,25 @@
 package br.com.projeto.open.swing.VO;
 
-import java.util.Objects;
+import java.math.BigDecimal;
+import java.util.Date;
 import org.openswing.swing.message.receive.java.ValueObjectImpl;
 
-public class FuncionarioVO extends ValueObjectImpl{
+public class FuncionarioVO extends ValueObjectImpl {
 
-    Integer id;
-    String uf, sexo, numero, nome, logradouro,
-            complemento, cidade, cep, bairro, cargo;
-    double salario;
-    String data_de_saida, data_de_entrada;
+    private Integer id;
+    String sexo;
+    String uf;
+    String numero;
+    String nome;
+    String logradouro;
+    String complemento;
+    String cidade;
+    String cep;
+    String bairro;
+    String cargo;
+    Date data_de_saida;
+    Date data_de_entrada;
+    BigDecimal salario;
 
     public Integer getId() {
         return id;
@@ -19,20 +29,20 @@ public class FuncionarioVO extends ValueObjectImpl{
         this.id = id;
     }
 
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
-
     public String getSexo() {
         return sexo;
     }
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 
     public String getNumero() {
@@ -91,63 +101,40 @@ public class FuncionarioVO extends ValueObjectImpl{
         this.bairro = bairro;
     }
 
-    public String getcargo() {
+    public String getCargo() {
         return cargo;
     }
 
-    public void setcargo(String cargo) {
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 
-    public double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(double salario) {
-        this.salario = salario;
-    }
-
-    public String getData_de_saida() {
+    public Date getData_de_saida() {
         return data_de_saida;
     }
 
-    public void setData_de_saida(String data_de_saida) {
+    public void setData_de_saida(Date data_de_saida) {
         this.data_de_saida = data_de_saida;
     }
 
-    public String getData_de_entrada() {
+    public Date getData_de_entrada() {
         return data_de_entrada;
     }
 
-    public void setData_de_entrada(String data_de_entrada) {
+    public void setData_de_entrada(Date data_de_entrada) {
         this.data_de_entrada = data_de_entrada;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        return hash;
+    public BigDecimal getSalario() {
+        return salario;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final FuncionarioVO other = (FuncionarioVO) obj;
-        return Objects.equals(this.id, other.id);
+    public void setSalario(BigDecimal salario) {
+        this.salario = salario;
     }
 
     @Override
     public String toString() {
-        return "Funcionario{" + "uf=" + uf + ", sexo=" + sexo + ", numero=" + numero + ", nome=" + nome + ", logradouro=" + logradouro + ", complemento=" + complemento + ", cidade=" + cidade + ", cep=" + cep + ", bairro=" + bairro + ", cargo=" + cargo + ", salario=" + salario + ", data_de_saida=" + data_de_saida + ", data_de_entrada=" + data_de_entrada + '}';
+        return "FuncionarioVO{" + "id=" + id + ", sexo=" + sexo + ", uf=" + uf + ", numero=" + numero + ", nome=" + nome + ", logradouro=" + logradouro + ", complemento=" + complemento + ", cidade=" + cidade + ", cep=" + cep + ", bairro=" + bairro + ", cargo=" + cargo + ", data_de_saida=" + data_de_saida + ", data_de_entrada=" + data_de_entrada + ", salario=" + salario + '}';
     }
-
 }
